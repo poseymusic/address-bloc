@@ -2,10 +2,13 @@ require_relative "entry.rb"
 require "csv"
 
 class AddressBook
+
   attr_accessor :entries
+
   def initialize
     @entries = []
   end
+
   def add_entry(name, phone, email)
     index = 0
     @entries.each do |entry|
@@ -16,6 +19,7 @@ class AddressBook
     end
     @entries.insert(index, Entry.new(name, phone, email))
   end
+
   # @entries == [entry2, entry1, entry3]
   # entry1 == <%Entry:43729473289 name: 'Ben', phone: '1234445555', email: 'email@email.com' %>
   def import_from_csv(file_name)
@@ -28,6 +32,29 @@ class AddressBook
 
   end
 
+  def binary_search(name)
+    # #1
+    lower = 0
+    upper = entries.length - 1
+
+# #2
+    while lower <= upper
+# #3
+      mid = (lower + upper) / 2
+      mid_name = entries[mid].name
+
+# #4
+      if name == mid_name
+        return entries[mid]
+      elsif name < mid_name
+        upper = mid - 1
+      elsif name > mid_name
+        lower = mid + 1
+      end
+    end
+    return nil
+  end
+
   def remove_entry(name, phone, email)
     index = 0
     @entries.each do |entry|
@@ -38,4 +65,5 @@ class AddressBook
       index += 1
     end
   end
+
 end
