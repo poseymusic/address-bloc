@@ -74,7 +74,12 @@ class MenuController
   end
 
   def read_csv
-
+    #enter File
+    # get chomp.
+    # pass name to
+    @address_book.import_from_csv(file_name)
+    #add more
+    #quit
   end
 
   def  entry_submenu(entry)
