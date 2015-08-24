@@ -33,17 +33,11 @@ class AddressBook
   end
 
   def binary_search(name)
-    # #1
     lower = 0
     upper = entries.length - 1
-
-# #2
     while lower <= upper
-# #3
       mid = (lower + upper) / 2
       mid_name = entries[mid].name
-
-# #4
       if name == mid_name
         return entries[mid]
       elsif name < mid_name
@@ -54,7 +48,25 @@ class AddressBook
     end
     return nil
   end
-
+#
+  def iterative_search(name)
+    @entries.each do |entry|
+      if name == entry.name
+        return entry
+      end
+    end
+    return nil
+#    upper = entries.length
+#    idx = 0
+#    while idx < upper
+#      if name == entries[idx].name
+#        return entries[idx]
+#      end
+#      idx += 1
+#    end
+#    return nil
+  end
+#
   def remove_entry(name, phone, email)
     index = 0
     @entries.each do |entry|
