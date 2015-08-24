@@ -66,6 +66,10 @@ class AddressBook
 #    return nil
   end
 #
+  def nuke
+    @entries = []
+  end
+
   def remove_entry(name, phone, email)
     index = 0
     @entries.each do |entry|
